@@ -1,7 +1,7 @@
 # require 'obd_response'
-require_relative "obd"
+require_relative "lib/obd"
 
-obd = OBD.new "/dev/tty.OBDII-DevB", 38400
+obd = OBD.connect "/dev/tty.OBDII-DevB", 38400
 
 #loop do
 #  + obd[ gets.chomp.strip ].inspect
