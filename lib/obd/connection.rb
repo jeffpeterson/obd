@@ -13,7 +13,7 @@ module OBD
     
     def connect
       @serial_port = SerialPort.new @port, @baud # , data_bits: 8, stop_bits: 1, parity: SerialPort::NONE
-      @serial_port.read_timeout = 5000
+      @serial_port.read_timeout = 2000
       read
       send("AT E0")    # turn echo off
       send("AT L0")    # turn linefeeds off
@@ -24,6 +24,7 @@ module OBD
 
     def [] command
       OBD::Command.format_result(command, send(OBD::Command.to_hex(command)))
+      com = OBD::Command.new command
     end
     
     def send data
