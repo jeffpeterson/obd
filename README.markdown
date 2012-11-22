@@ -1,13 +1,13 @@
 Installation
 ============
-~~~ console
+~~~ text
 gem install obd
 ~~~
 
 Usage
 =====
 
-Connect your OBD-II adapter and pass its device file to `OBD.connect`
+Connect your OBD-II adapter and pass its device file to `OBD.connect`:
 
 ~~~ ruby
 require 'obd'
