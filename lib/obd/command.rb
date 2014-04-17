@@ -2,7 +2,7 @@ module OBD
   class Command
 
     def initialize
-      
+
     end
 
     def self.format_result command, result
@@ -27,13 +27,13 @@ module OBD
 
     def self.pid
       {
-        "atrv" => [:battery_voltage, lambda {|x| x.to_s}]
+        "atrv" => [:battery_voltage, lambda {|x| x.to_s}],
         "0100" => [:pids_supported_1]
       }
     end
 
     def self.pids
-      { 
+      {
         pids_supported_1:                      lambda {|x,d| d.to_s(2).split('').each_with_index.map{|b,i| pids.keys[i] if b == '1'}},
         monitor_status_since_clear:            lambda {|x| x},
         freeze_dtc:                            lambda {|x| x},
