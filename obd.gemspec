@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.platform = Gem::Platform::RUBY
   spec.require_paths = %w[lib]
   spec.summary      = "A Ruby OBD-II API"
-  spec.add_runtime_dependency 'serialport', '~> 1.0.0'
+  spec.add_runtime_dependency 'serialport', '~> 1.3'
   spec.author = "Jeff Peterson"
   spec.email = "jeff@petersonj.com"
   spec.homepage = "http://petersonj.com/obd"
