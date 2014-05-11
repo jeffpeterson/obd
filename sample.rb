@@ -1,6 +1,14 @@
 require 'obd'
 
-obd = OBD.connect "/dev/tty.obd", 38400
+err = true
+while err do
+	puts 'Connecting to OBD2 adapter...'
+	# obd, err = OBD.connect "/dev/tty.obd", 38400
+	obd, err = OBD.connect "/dev/tty.usbserial-FTDI_A", 9600
+	sleep 1
+end
+
+
 
 loop do
   puts obd[:engine_rpm],

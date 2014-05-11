@@ -29,8 +29,11 @@ module OBD
       #
       # Known protocols:
       # 1998 Mazda MPV Minivan:   ISO 9141-2               protocol 3
+      send("AT SP 3")
+
       # 2013 Honda Fit:           ISO 15765-4 (CAN 29/500) protocol 7
-      send("AT SP 7")
+      # send("AT SP 7")
+      
       # send("AT DP")    # print out which protocol is currently selected
     end
 
