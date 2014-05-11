@@ -14,7 +14,8 @@ module OBD
     def connect
       @serial_port = SerialPort.new @port, @baud # , data_bits: 8, stop_bits: 1, parity: SerialPort::NONE
       @serial_port.read_timeout = 2000
-      read
+      @serial_port.gets("\r\r>").to_s.chomp("\r\r>")
+
       send("AT E0")    # turn echo off
       send("AT L0")    # turn linefeeds off
       send("AT S0")    # turn spaces off
@@ -44,7 +45,17 @@ module OBD
     private
 
     def read
-      return @serial_port.gets("\r\r>").to_s.chomp("\r\r>")
+      data = ''
+
+      while data == '' || data[0] == 'S' do #if data is empty or ELM is in SEARCHING or STOPPED state
+        begin
+          data = @serial_port.gets("\r\r>").to_s.chomp("\r\r>")
+        rescue
+          return false
+        end
+      end
+
+      return data
     end
     
     def write data
