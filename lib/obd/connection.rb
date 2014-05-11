@@ -19,12 +19,21 @@ module OBD
       send("AT L0")    # turn linefeeds off
       send("AT S0")    # turn spaces off
       send("AT AT2")   # respond to commands faster
-      send("AT SP 00") # automatically select protocol
+      # send("AT SP 00") # automatically select protocol
+      # With the sparkfun OBD2 kit, the auto search messes up this gem:
+      # Mazda MPV Minivan protocol: ISO 9141-2  which is protocol 3:
+      # 2013 Honda Fit protocol: ISO 15765-4 (CAN 29/500)    protocol 7
+      send("AT SP 7")
+      # send("AT DP")    # print out which protocol is currently selected
     end
 
     def [] command
       OBD::Command.format_result(command, send(OBD::Command.to_hex(command)))
-      com = OBD::Command.new command
+      # unless OBD::Command.format_result(command, send(OBD::Command.to_hex(command))) == nil
+        # com = OBD::Command.new command
+      # else 
+      #   return nil
+      # end
     end
     
     def send data
