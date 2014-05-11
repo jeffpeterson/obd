@@ -53,7 +53,7 @@ module OBD
         freeze_dtc:                            lambda {|x,d| x},
         fuel_system_status:                    lambda {|x,d| x},
         calculated_engine_load:                lambda {|x,d| "%0.2f" % (d * 100.0 / 255.0) + '%'},
-        engine_coolent_temperature:            lambda {|x,d| "%0.2f" % (d * 1.8 - 104) + '*F'},
+        engine_coolant_temperature:            lambda {|x,d| "%0.2f" % (d * 1.8 - 104) + '*F'},
         short_term_fuel_trim_bank_1:           lambda {|x,d| "%0.2f" % (d * 0.78125 - 100) + '%'},
         long_term_fuel_trim_bank_1:            lambda {|x,d| "%0.2f" % (d * 0.78125 - 100) + '%'},
         short_term_fuel_trim_bank_2:           lambda {|x,d| "%0.2f" % (d * 0.78125 - 100) + '%'},
