@@ -22,14 +22,14 @@ module OBD
       send("AT L0")    # turn linefeeds off
       send("AT S0")    # turn spaces off
       send("AT AT2")   # respond to commands faster
-      # send("AT SP 00") # automatically select protocol (00 writes to AUTO protocol EEPROM, 0 will not)
+      send("AT SP 00") # automatically select protocol (00 writes to AUTO protocol EEPROM, 0 will not)
 
       # With the sparkfun OBD2 kit, the auto search messes up this gem. We can hardcode the protocol with
       # AT SP <protocol number>:
       #
       # Known protocols:
       # 1998 Mazda MPV Minivan:   ISO 9141-2               protocol 3
-      send("AT SP 3")
+      # send("AT SP 3")
 
       # 2013 Honda Fit:           ISO 15765-4 (CAN 29/500) protocol 7
       # send("AT SP 7")

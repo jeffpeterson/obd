@@ -6,15 +6,10 @@ module OBD
     end
 
     def self.format_result command, result
-      if result == 'SEARCHING...'
-        puts "Communication error: Busy searching for correct protocol. Autosearch is buggy with this gem..."
-        puts "Data returned: '#{result}'"
-        return nil
-      end
       if result == nil || result == ''
         puts "Communication error: No data received. Check serial connection..."
         puts "Data returned: '#{result}'"
-        return nil
+        return ""
       end
       if is_command?(command) && result != "NO DATA"
         # puts "Data returned: '#{result}'"
@@ -101,7 +96,7 @@ module OBD
         egr_error:                             lambda {|x,d| "%0.2f" % ((d - 128.0) * 100.0 / 128.0) + '%'},
         commanded_evaporative_purge:           lambda {|x,d| "%0.2f" % (d * 100.0 / 255.0) + '%'},
         fuel_level_input:                      lambda {|x,d| "%0.2f" % (d * 100.0 / 255.0) + '%'},
-        warmups_since_codes_cleared:           lambda {|x,d| d},
+        warmups_since_codes_cleared:           lambda {|x,d| d.to_s},
         distance_traveled_since_codes_cleared: lambda {|x,d| d.to_s + 'km'}
         # Done added by JamesHagerman
 

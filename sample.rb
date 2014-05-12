@@ -14,10 +14,12 @@ loop do
   puts obd[:engine_rpm],
     obd[:vehicle_speed],
     obd.voltage,
-    obd[:timing_advance]             + " - Timing Advance",
-    obd[:engine_coolant_temperature] + " - Engine Coolant Temperature",
-    obd[:calculated_engine_load]     + " - Calculated Engine Load",
-    obd[:throttle_position]          + " - Throttle Position",
-    obd[:aux_input_status]           + " - Aux input status",
+    obd[:timing_advance]             	+ " - Timing Advance",
+    obd[:engine_coolant_temperature] 	+ " - Engine Coolant Temperature",
+    obd[:calculated_engine_load]     	+ " - Calculated Engine Load",
+    obd[:throttle_position]          	+ " - Throttle Position",
+    obd[:warmups_since_codes_cleared] 	+ " - Warmups since codes cleared",
+    obd[:distance_traveled_with_mil_on]	+ " - Distance traveled with MIL on",
+    obd.send('4D') 						+ " - Time run with MIL on",
     '-------------------------------'
 end
