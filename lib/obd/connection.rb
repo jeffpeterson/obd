@@ -24,7 +24,6 @@ module OBD
 
     def [] command
       OBD::Command.format_result(command, send(OBD::Command.to_hex(command)))
-      com = OBD::Command.new command
     end
     
     def send data
